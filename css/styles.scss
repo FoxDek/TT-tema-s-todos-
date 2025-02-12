@@ -1,0 +1,377 @@
+@use 'globals/normalize';
+@use 'globals/variables' as *;
+
+body {
+  font-family: "Nunito", serif;
+  font-optical-sizing: auto;
+  // font-weight: <weight>;
+  font-style: normal;
+  color: $dark-color;
+  font-size: 1.2rem;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  overflow-x: hidden;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+
+  &.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+  }
+}
+
+.todo-core {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  padding: 6rem 3rem;
+
+  @media (max-width: 768px) {
+    padding: 6rem 1rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40rem;
+  }
+
+  &__about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    user-select: none;
+  }
+
+  &__about-title {
+    color: $accent-color;
+    font-size: 10rem;
+    text-align: center;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 8rem;
+    }
+  }
+
+  &__about-subtitle {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: $accent-color;
+    opacity: 0.7;
+    margin-top: -2rem;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+
+  &__form {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    border: 0.1rem solid $accent-color-soft;
+    transition: border-color 0.3s ease-in-out; // Плавный переход цвета границы
+
+    &:focus-within {
+      border-color: $accent-color;
+    }
+  }
+
+  &__form-open-button {
+    height: 100%;
+    aspect-ratio: 1/2;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out; /* Плавный переход */
+
+    @media (max-width: 768px) {
+      padding-left: 0.5rem;
+    }
+
+    svg {
+      fill: $accent-color;
+      transition: transform 0.3s ease-in-out;
+
+      &.closed {
+        transform: rotate(-180deg);
+      }
+    }
+
+    &.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &__form-input {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    caret-color: $accent-color;
+    background-color: transparent;
+    color: $dark-color;
+
+    &::placeholder {
+      color: $accent-color-soft;
+      opacity: 0.8;
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+
+    &.dark-theme {
+      caret-color: #ffffff;
+      color: #ffffff;
+    }
+  }
+
+  &__tasks {
+    width: 100%;
+    
+    .todo-list {
+      list-style-type: none;
+      padding: 0;
+      opacity: 1;
+      transition: opacity 0.3s ease-in-out;
+
+      &.hidden {
+        opacity: 0;
+      }
+
+      &__task {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 0.1rem solid $border-color;
+        padding: 1rem;
+        border-top: none;
+      }
+
+      &__task-state {
+        width: 100%;
+        max-width: 1.8rem;
+        margin: 0;
+        aspect-ratio: 1/1;
+        border: 0.1rem solid $border-color;
+        border-radius: 50%;
+        position: relative;
+        cursor: pointer;
+
+        @media (max-width: 768px) {
+          max-width: 1.5rem;
+        }
+
+        & .todo-list__task-state-svg {
+          width: 2rem;
+          height: auto;
+          position: absolute;
+          top: 45%;
+          left: 60%;
+          transform: translate(-50%, -50%);
+          opacity: 0;
+          transition: opacity 0.3s ease-in-out;
+
+          & path {
+            fill: $accent-color;
+          }
+
+          &.completed {
+            opacity: 1;
+          }
+        }
+
+        &.completed {
+          border: 0.1rem solid $accent-color-soft;
+        }
+
+        &:hover{
+          border: 0.1rem solid $accent-color-soft;
+        }
+      }
+
+      &__task-text {
+        max-width: 27rem;
+        transition: all 0.3s ease-in-out;
+        user-select: none;
+        padding: 0 1rem;
+
+        @media (max-width: 768px) {
+          max-width: 17rem;
+        }
+
+        &.completed {
+          text-decoration: line-through;
+          color: $accent-color-soft;
+          opacity: 0.7;
+        }
+      }
+
+      &__task-close-button {
+        width: 100%;
+        max-width: 1.5rem;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        aspect-ratio: 1/1;
+
+        @media (max-width: 768px) {
+          max-width: 1.3rem;
+        }
+
+        svg {
+          width: 100%;
+          height: 100%;
+          fill: $border-color;
+          transition: fill 0.3s ease-in-out;
+        }
+
+        &:hover svg {
+          fill: $accent-color;
+        }
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    user-select: none;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      padding: 4rem 0;
+      gap: 1rem;
+      max-width: 60%;
+    }
+
+    &.hidden {
+      opacity: 0;
+    }
+
+    & .regularButton {
+      width: 100%;
+      padding: 1rem;
+      color: $accent-color-soft;
+      background-color: transparent;
+      border: 0.1rem solid $accent-color-soft;
+      -webkit-tap-highlight-color: transparent;
+
+      &:hover {
+        border-color: $accent-color;
+        color: $accent-color;
+      }
+
+      &:active:not(.select-sort) {
+        background-color: rgba(214, 168, 255, 0.2);
+      }
+    }
+
+    & .select-sort {
+      cursor: pointer;
+
+      // тут надо бы убрать стандартную стрелку, но тогда надо закидывать в файлы:
+      // appearance: none;
+      // background: url(arrow_custom.svg) no-repeat right;
+      // background-position-x: calc(100% - 8px)
+
+      &:focus {
+        border-color: $accent-color;
+        outline: none;
+      }
+    }
+  }
+}
+
+
+
+
+.light-mod-toggler {
+  position: absolute;
+  width: 2rem;
+  height: auto;
+  top: 40px;
+  right: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+
+  @media (max-width: 768px) {
+    top: 30px;
+    right: 30px;
+  }
+  
+  & svg {
+    fill: $dark-color;
+    transition: transform 0.3s ease;
+    position: absolute;
+  }
+}
+
+.moon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  // background-color: #f0e68c;
+  background-color: $accent-color-soft;
+  position: relative;
+  transition: background-color 0.3s ease ease-in-out;
+
+  @media (max-width: 768px) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.moon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0.6rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: left 0.3s ease-in-out, background-color 0.3s ease-in-out; 
+  pointer-events: none;
+
+  @media (max-width: 768px) {
+    left: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.full-moon {
+  background-color: #f0e68c;
+}
+
+.full-moon::before {
+  left: 100%;
+  background-color: #121212;
+}

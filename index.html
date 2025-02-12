@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TT</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body class="body">
+
+  <main class="main">
+    
+    <section class="todo-core">
+      <div class="todo-core__content">
+
+        <div class="todo-core__about">
+          <h1 class="todo-core__about-title">T T</h1>
+          <span class="todo-core__about-subtitle">(Tema's todos)</span>
+        </div>
+
+        <div class="todo-core__form">
+          <button class="todo-core__form-open-button hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M12 17.414 3.293 8.707l1.414-1.414L12 14.586l7.293-7.293 1.414 1.414L12 17.414z"/></svg>
+          </button>
+          <input type="text" class="todo-core__form-input" placeholder="What should to be done?">
+        </div>
+
+        <div class="todo-core__tasks">
+          <ul class="todo-list">
+
+            <!-- <li class="todo-list__task">
+              <figure class="todo-list__task-state">
+                <svg class="todo-list__task-state-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="checklist,-approve,-check,-correct,-success" fill="none" fill-rule="evenodd"><path id="Path" d="m26.2501621 5.33837836 1.4996758 1.32324328-15.5969199 17.67650916-7.73415619-5.5243973 1.16247638-1.627467 6.26576181 4.4757335z" fill="rgb(0,0,0)" fill-rule="nonzero"/></g></svg>
+              </figure>
+              <span class="todo-list__task-text">Покормить кота, а лучше и себя тоже. </span>
+              <button class="todo-list__task-close-button">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve"><g><g id="cross"><g><polygon points="612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397 306,341.411 576.521,611.397 612,575.997 341.459,306.011 "/></g></g></g></svg>
+              </button>
+            </li> -->
+
+          </ul>
+        </div>
+
+        <div class="todo-core__buttons">
+          <button class="regularButton complete-all-button">Complete all</button>
+            <!-- <label for="sort">Сортировка</label> -->
+            <select class="regularButton select-sort" id="sort" name="sort">
+              <option value="date_created">By date</option>
+              <option value="name">By name</option>
+              <option value="completed">Completed</option>
+              <option value="in_progress">In progress</option>
+            </select>
+          <button class="regularButton delete-all-button">Delete all</button>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="light-mod-toggler">
+      <div class="moon" id="moon"></div>
+    </div>
+    
+
+  </main>
+
+  
+</body>
+
+<script type="text/javascript" src="js/index.js"></script>
+
+</html>
